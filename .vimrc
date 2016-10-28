@@ -67,5 +67,8 @@ let jshint2_command = '~/node_modules/jshint/bin/jshint'
 let jshint2_read = 1
 let jshint2_save = 1
 
+"Color scheme
+colo ok
+
 execute pathogen#infect()
 
