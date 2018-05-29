@@ -17,6 +17,10 @@
 "sudo npm install -g jshint
 "git clone https://github.com/Shutnik/jshint2.vim ~/.vim/bundle/jshint2
 
+"Install vim-nodejs-complete
+"cd ~/.vim/bundle
+"git clone https://github.com/myhere/vim-nodejs-complete
+
 set tabstop=2
 set shiftwidth=2
 set smarttab
@@ -55,21 +59,24 @@ set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866
 " Send more characters for redraws
 set ttyfast
 
-" Enable mouse use in all modes
-set mouse=a
-
 " Set this to the name of your terminal that supports mouse codes.
 " Must be one of: xterm, xterm2, netterm, dec, jsbterm, pterm
 set ttymouse=xterm2
 
 "JSHint options
-let jshint2_command = '~/node_modules/jshint/bin/jshint'
+let jshint2_command = '/home/coder/node_modules/jshint/bin/jshint'
 let jshint2_read = 1
 let jshint2_save = 1
 
 "Color scheme
-syntax on
 colo ok
+
+let g:nodejs_complete_config = {
+  \  'js_compl_fn': 'javascriptcomplete#CompleteJS',
+  \  'max_node_compl_len': 15
+  \}
 
 execute pathogen#infect()
 
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
