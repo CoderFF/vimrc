@@ -17,9 +17,23 @@
 "sudo npm install -g jshint
 "git clone https://github.com/Shutnik/jshint2.vim ~/.vim/bundle/jshint2
 
-"Install vim-nodejs-complete
+"Install YouCompleteMe + Tern
+"See https://github.com/Valloric/YouCompleteMe
+"Somthing like this:
 "cd ~/.vim/bundle
-"git clone https://github.com/myhere/vim-nodejs-complete
+"git clole https://github.com/Valloric/YouCompleteMe
+"cd YouCompleteMe
+"git submodule update --init --recursive
+"./install.py --js-completer
+"
+"Also, don't forget to create a .tern-project file in the root directory of
+"your JavaScript project, containing
+"{
+"    "plugins": {
+"        "node": {}
+"    }
+"}
+"
 
 set tabstop=2
 set shiftwidth=2
@@ -68,15 +82,15 @@ let jshint2_command = '/home/coder/node_modules/jshint/bin/jshint'
 let jshint2_read = 1
 let jshint2_save = 1
 
+"YouCompleteMe options
+let g:ycm_autoclose_preview_window_after_completion = 1
 "Color scheme
 colo ok
-
-let g:nodejs_complete_config = {
-  \  'js_compl_fn': 'javascriptcomplete#CompleteJS',
-  \  'max_node_compl_len': 15
-  \}
 
 execute pathogen#infect()
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+" <Ctrl-l> redraws the screen and removes any search highlighting.
+nnoremap <silent> <C-l> :nohl<CR><C-l>
