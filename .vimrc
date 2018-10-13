@@ -94,3 +94,13 @@ set omnifunc=syntaxcomplete#Complete
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+" From insert mode too
+inoremap <silent> <C-l> <Esc>:nohl<CR><C-l>i
+
+" Prevents Insert from cycling between insert mode and replace mode
+nnoremap <Insert> i
+inoremap <Insert> <Nop>
+
+" Binds Alt+Insert to enter replace mode.
+nnoremap <A-Insert> R
+
