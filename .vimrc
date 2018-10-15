@@ -55,6 +55,17 @@ set lz
 set listchars=tab:··
 set list
 
+" set ident on
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 "key mapings
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
@@ -91,6 +102,27 @@ execute pathogen#infect()
 
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+
+" VIM-Javascript conceal characters
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+let g:javascript_conceal_noarg_arrow_function = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
+
+set conceallevel=1
+
+" map leader (the '\' button) to toggle concealing
+map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+
+" VIM-Javascript Done
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
