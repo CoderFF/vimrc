@@ -96,7 +96,8 @@ let jshint2_save = 1
 "YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_completion = 1
 "Color scheme
-colo ok
+syntax on
+colorscheme monokai
 
 execute pathogen#infect()
 
@@ -118,6 +119,9 @@ let g:javascript_conceal_noarg_arrow_function = "🞅"
 let g:javascript_conceal_underscore_arrow_function = "🞅"
 
 set conceallevel=1
+
+"highlight Conceal guifg=#ff0000 guibg=#00ff00 ctermfg=4* ctermbg=NONE
+highlight Conceal ctermfg=1* ctermbg=NONE
 
 " map leader (the '\' button) to toggle concealing
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
