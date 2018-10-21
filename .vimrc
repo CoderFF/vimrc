@@ -140,3 +140,15 @@ inoremap <Insert> <Nop>
 " Binds Alt+Insert to enter replace mode.
 nnoremap <A-Insert> R
 
+" Bindings for run and debug from VIM
+nnoremap <F2> <Esc>:w<CR>:!npm run vim-run<enter>
+inoremap <F2> <Esc>:w<CR>:!npm run vim-run<enter>
+
+nnoremap <F3> <Esc>:w<CR>:!npm run vim-inspect-brk<enter>
+inoremap <F3> <Esc>:w<CR>:!npm run vim-inspect-brk<enter>
+
+nnoremap <F4> <Esc>:w<CR>:!npm run vim-inspect<enter>
+inoremap <F4> <Esc>:w<CR>:!npm run vim-inspect<enter>
+
+" Disable YouCompleteMe on SQL files
+let g:ycm_filetype_blacklist = { 'sql': 1 }
