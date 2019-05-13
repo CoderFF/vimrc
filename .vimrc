@@ -17,6 +17,13 @@
 "sudo npm install -g jshint
 "git clone https://github.com/Shutnik/jshint2.vim ~/.vim/bundle/jshint2
 
+"Install ALE+ESLint
+"npm install eslint-plugin-prettier --save-dev
+"npm install prettier --save-dev
+"Install ALE
+"cd ~/.vim/bundle
+"git clone https://github.com/w0rp/ale.git
+
 "Install YouCompleteMe + Tern
 "See https://github.com/Valloric/YouCompleteMe
 "Somthing like this:
@@ -89,9 +96,9 @@ set ttyfast
 set ttymouse=xterm2
 
 "JSHint options
-let jshint2_command = '/home/coder/node_modules/jshint/bin/jshint'
-let jshint2_read = 1
-let jshint2_save = 1
+"let jshint2_command = '/home/coder/node_modules/jshint/bin/jshint'
+"let jshint2_read = 1
+"let jshint2_save = 1
 
 "YouCompleteMe options
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -150,5 +157,20 @@ inoremap <F3> <Esc>:w<CR>:!npm run vim-inspect-brk<enter>
 nnoremap <F4> <Esc>:w<CR>:!npm run vim-inspect<enter>
 inoremap <F4> <Esc>:w<CR>:!npm run vim-inspect<enter>
 
+nnoremap <F5> <Esc>:w<CR>:!npm run vim-test<enter>
+inoremap <F5> <Esc>:w<CR>:!npm run vim-test<enter>
+
+
 " Disable YouCompleteMe on SQL files
 let g:ycm_filetype_blacklist = { 'sql': 1 }
+
+"ALE + ESLint config
+let g:ale_fixers = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint']}
+
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+  
