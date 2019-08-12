@@ -41,9 +41,13 @@
 "    }
 "}
 "
+"Install sleuth(detects indent)
+"cd ~/.vim/bundle/
+"git clone https://github.com/tpope/vim-sleuth
 
 set tabstop=2
-set shiftwidth=2
+set shiftwidth=2 " this is an indent width
+ 
 set smarttab
 set et
 
@@ -157,8 +161,8 @@ inoremap <F3> <Esc>:w<CR>:!npm run vim-inspect-brk<enter>
 nnoremap <F4> <Esc>:w<CR>:!npm run vim-inspect<enter>
 inoremap <F4> <Esc>:w<CR>:!npm run vim-inspect<enter>
 
-nnoremap <F5> <Esc>:w<CR>:!npm run vim-test<enter>
-inoremap <F5> <Esc>:w<CR>:!npm run vim-test<enter>
+nnoremap <F5> <Esc>:w<CR>:!npm run vim-test --silent<enter>
+inoremap <F5> <Esc>:w<CR>:!npm run vim-test --silent<enter>
 
 
 " Disable YouCompleteMe on SQL files
@@ -168,9 +172,77 @@ let g:ycm_filetype_blacklist = { 'sql': 1 }
 let g:ale_fixers = {'javascript': ['eslint']}
 let g:ale_linters = {'javascript': ['eslint']}
 
+"let g:ale_linters_explicit = 1
+
 let g:ale_sign_error = '❌'
 let g:ale_sign_warning = '⚠️'
 
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
-  
+
+"-- FOLDING --
+set foldmethod=indent "indentation specify folds
+set foldignore='#/*'
+set foldminlines=3 "minimum lines to fold is 3 cause it make no sense to fold less
+"set foldmethod=syntax "syntax highlighting items specify folds
+set foldcolumn=1 "defines 1 col at window left, to indicate folding
+"let javaScript_fold=1 "activate folding by JS syntax
+set foldlevelstart=1 "start file with all folds closed(lvl 1)
+"set foldlevelstart=99 "start file with all folds opened
+
+function! MyFoldText() " {{{
+    let line = getline(v:foldstart)
+
+    let nucolwidth = &fdc + &number * &numberwidth
+    let windowwidth = winwidth(0) - nucolwidth - 3
+    let foldedlinecount = v:foldend - v:foldstart
+
+    let displayline = matchstr(line, '\s\+') . '… ' . foldedlinecount . ' lines …'
+    let fillcharcount = windowwidth - strdisplaywidth(displayline)
+    return displayline . repeat(" ", fillcharcount)
+endfunction " }}}
+set foldtext=MyFoldText()
+
+"save and remember folds automatically
+set viewoptions-=options
+autocmd BufWinLeave *.* mkview!
+autocmd BufWinEnter *.* silent loadview
+
+"map keys
+"Shift + Left Arrow closes fold
+"Shift + Right Arrow opens fold
+"Shift + Up&Down navigates between folds
+"Ctrl + Arrows and Alt + Arrows do nothing
+"F1 toggle foldcolumn
+"nnoremap <silent> <F1> :if &foldcolumn <Bar> set foldcolumn=0 <Bar> else set foldcolumn=1 <Bar> endif
+nnoremap <silent> <F1> :if &foldcolumn <Bar> set foldcolumn=0 <Bar> else <Bar> set foldcolumn=1 <Bar> endif<CR>
+nnoremap <S-F1> :set foldlevel=1<CR>
+nnoremap <S-Left> zc
+inoremap <S-Left> <C-O>zc
+nnoremap <S-Right> zO
+inoremap <S-Right> <C-O>zO
+" Shift-Up Shift-Down
+nnoremap <S-Up> zk
+inoremap <S-Up> <C-O>zk
+nnoremap <S-Down> zj
+inoremap <S-Down> <C-O>zj
+" modified arrow keys do bad things by default
+" Ctrl-(Up, Down, Left, Right)
+noremap <C-Up> <Nop>
+noremap! <C-Up> <Nop>
+noremap <C-Down> <Nop>
+noremap! <C-Down> <Nop>
+noremap <C-Left> <Nop>
+noremap! <C-Left> <Nop>
+noremap <C-Right> <Nop>
+noremap! <C-Right> <Nop>
+" Alt-(Up, Down, Left, Right)
+noremap <M-Up> <Nop>
+noremap! <M-Up> <Nop>
+noremap <M-Down> <Nop>
+noremap! <M-Down> <Nop>
+noremap <M-Left> <Nop>
+noremap! <M-Left> <Nop>
+noremap <M-Right> <Nop>
+noremap! <M-Right> <Nop>
+
