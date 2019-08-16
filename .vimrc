@@ -236,13 +236,10 @@ noremap <C-Left> <Nop>
 noremap! <C-Left> <Nop>
 noremap <C-Right> <Nop>
 noremap! <C-Right> <Nop>
-" Alt-(Up, Down, Left, Right)
-noremap <M-Up> <Nop>
-noremap! <M-Up> <Nop>
-noremap <M-Down> <Nop>
-noremap! <M-Down> <Nop>
+" Alt-(Left, Right)
 noremap <M-Left> <Nop>
 noremap! <M-Left> <Nop>
 noremap <M-Right> <Nop>
 noremap! <M-Right> <Nop>
 
+autocmd BufNewFile,BufRead *.volt set syntax=html
