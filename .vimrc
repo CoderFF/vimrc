@@ -243,3 +243,17 @@ noremap <M-Right> <Nop>
 noremap! <M-Right> <Nop>
 
 autocmd BufNewFile,BufRead *.volt set syntax=html
+
+" map Ctrl+S to save
+noremap <C-S> :update<CR> 
+vnoremap <C-S> <C-C>:update<CR> 
+inoremap <C-S> <C-O>:update<CR>
+
+" Borland PgUp/PgDn for all modes
+nnoremap <silent> <PageUp> <C-U><C-U>
+vnoremap <silent> <PageUp> <C-U><C-U>
+inoremap <silent> <PageUp> <C-\><C-O><C-U><C-\><C-O><C-U>
+
+nnoremap <silent> <PageDown> <C-D><C-D>
+vnoremap <silent> <PageDown> <C-D><C-D>
+inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
