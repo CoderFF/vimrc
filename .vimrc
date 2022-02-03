@@ -226,16 +226,6 @@ nnoremap <S-Up> zk
 inoremap <S-Up> <C-O>zk
 nnoremap <S-Down> zj
 inoremap <S-Down> <C-O>zj
-" modified arrow keys do bad things by default
-" Ctrl-(Up, Down, Left, Right)
-noremap <C-Up> <Nop>
-noremap! <C-Up> <Nop>
-noremap <C-Down> <Nop>
-noremap! <C-Down> <Nop>
-noremap <C-Left> <Nop>
-noremap! <C-Left> <Nop>
-noremap <C-Right> <Nop>
-noremap! <C-Right> <Nop>
 " Alt-(Left, Right)
 noremap <M-Left> <Nop>
 noremap! <M-Left> <Nop>
@@ -257,3 +247,36 @@ inoremap <silent> <PageUp> <C-\><C-O><C-U><C-\><C-O><C-U>
 nnoremap <silent> <PageDown> <C-D><C-D>
 vnoremap <silent> <PageDown> <C-D><C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
+
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
+
+inoremap <C-w> <C-\><C-o>dB
+inoremap <C-BS> <C-\><C-o>db
+
+
+:set backspace=indent,eol,start
+
+" Create .swp files in ~/.vim/tmp
+set directory^=$HOME/.vim/tmp//
+au BufNewFile,BufRead *.ejs set filetype=html
+
+set ruler
+
+" Tab and Shift-Tab to indent and de-indent
+nmap >> <Nop>
+nmap << <Nop>
+vmap >> <Nop>
+vmap << <Nop>nnoremap <Tab>   >>
+nnoremap <S-Tab> <<
+vnoremap <Tab>   >><Esc>gv
+vnoremap <S-Tab> <<<Esc>gv
+
+" binds in visual mode: ;; to align by first colon (:), == to align by first
+" equal (=) sign, and || to align by "|" character, centrally, to make tables
+vmap ;; :Tab /^[^:]*\zs:/l1<CR>
+vmap == :Tab /^[^=]*\zs=/l1<CR>
+vmap \|\| :Tab /\|/c1<CR>
+
+
