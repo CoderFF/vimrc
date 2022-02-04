@@ -280,3 +280,18 @@ vmap == :Tab /^[^=]*\zs=/l1<CR>
 vmap \|\| :Tab /\|/c1<CR>
 
 
+" smarter dd 
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+nnoremap <leader>dd ""dd
+
+let mapleader = ","
+let g:mapleader = ","
+
+
